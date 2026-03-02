@@ -18,9 +18,9 @@ import { cn } from '../lib/utils';
 import SEO from '../components/SEO';
 import { 
   getRelatedPosts, 
-  suggestInternalLinks, 
-  suggestContentClusters 
+  suggestInternalLinks
 } from '../utils/seoAutomation';
+import { POSTS, CATEGORIES as CONST_CATEGORIES } from '../constants';
 
 // Mock data for the blog post
 const POSTS_DATA = {
@@ -926,50 +926,32 @@ const POSTS_DATA = {
   }
 };
 
-const CATEGORIES = [
-  { name: 'AI Tools', count: 12 },
-  { name: 'Marketing', count: 8 },
-  { name: 'SEO', count: 15 },
-  { name: 'YouTube', count: 6 },
-  { name: 'Productivity', count: 10 },
-  { name: 'Automation', count: 7 }
-];
-
-const RECENT_POSTS = [
-  {
-    id: 16,
-    slug: 'best-ai-tools-gumroad-creators',
-    title: '5 Best AI Tools for Gumroad Digital Product Creators',
-    date: 'Feb 27, 2026',
-    image: 'https://i.ibb.co/RTkgK4Nx/20260227-0113-Image-Generation-simple-compose-01kje72gzhe5xv5kb52yny2vr2.png'
-  },
-  {
-    id: 17,
-    slug: 'tubebuddy-keyword-explorer-tutorial-rank-shorts',
-    title: 'TubeBuddy Keyword Explorer Tutorial: Rank YouTube Shorts Fast',
-    date: 'Feb 27, 2026',
-    image: 'https://i.ibb.co/twT6b8JK/20260227-0133-Image-Generation-simple-compose-01kje86x8xefvttq2edzjyx3ns.png'
-  },
-  {
-    id: 18,
-    slug: 'build-automated-email-sales-funnel-budget',
-    title: 'How to Build an Automated Email Sales Funnel on a Budget',
-    date: 'Feb 27, 2026',
-    image: 'https://i.ibb.co/1GKnfK5W/20260227-0147-Effortless-Workspace-Elegance-simple-compose-01kje90n3bepwareybwhejjpap.png'
-  }
-];
-
 export default function BlogPost() {
   const { id } = useParams();
   
-  // Find post by ID or Slug
-  const post = Object.values(POSTS_DATA).find(p => p.slug === id) || 
-               POSTS_DATA[id as keyof typeof POSTS_DATA] || 
-               POSTS_DATA['9'];
+  // Find post metadata from constants
+  const postMetadata = POSTS.find(p => p.slug === id || p.id.toString() === id) || POSTS[0];
+  
+  // Get content from local POSTS_DATA
+  const postContent = POSTS_DATA[postMetadata.id.toString() as keyof typeof POSTS_DATA] || POSTS_DATA['9'];
+  
+  // Merge metadata and content
+  const post = { ...postMetadata, ...postContent };
 
-  const allPosts = Object.values(POSTS_DATA);
-  const relatedPosts = getRelatedPosts(Number(Object.keys(POSTS_DATA).find(key => POSTS_DATA[key as keyof typeof POSTS_DATA] === post)), post.category, allPosts);
-  const contentClusters = suggestContentClusters(post.category);
+  const allPosts = POSTS;
+  const currentPostIndex = allPosts.findIndex(p => p.slug === post.slug);
+  const relatedPosts = getRelatedPosts(post.id, post.category || '', allPosts);
+  
+  const recentPosts = [...allPosts]
+    .sort((a, b) => new Date(b.publishDate || b.date).getTime() - new Date(a.publishDate || a.date).getTime())
+    .slice(0, 3);
+
+  const categoriesWithCount = CONST_CATEGORIES
+    .filter(c => c !== 'All')
+    .map(name => ({
+      name,
+      count: allPosts.filter(p => p.category === name).length
+    }));
 
   return (
     <div className="bg-slate-50 min-h-screen pb-24">
@@ -1074,51 +1056,33 @@ export default function BlogPost() {
             </motion.div>
 
             {/* Related Posts */}
-            <div className="mt-16 pt-16 border-t border-slate-100">
-              <h3 className="text-2xl font-display font-bold text-slate-900 mb-8">Related Articles</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {relatedPosts.map((related) => (
-                  <Link 
-                    key={related.slug} 
-                    to={`/blog/${related.slug}`}
-                    className="group"
-                  >
-                    <div className="aspect-[16/9] rounded-xl overflow-hidden mb-4">
-                      <img 
-                        src={related.image} 
-                        alt={related.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                    <h4 className="font-bold text-slate-900 group-hover:text-brand-primary transition-colors line-clamp-2">
-                      {related.title}
-                    </h4>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            {/* SEO Content Clusters (Subtle) */}
-            <div className="mt-16 p-8 bg-slate-900 rounded-3xl text-white overflow-hidden relative">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/10 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2" />
-              <div className="relative z-10">
-                <div className="flex items-center gap-2 mb-6">
-                  <Zap className="w-5 h-5 text-brand-secondary" />
-                  <h3 className="text-xl font-bold uppercase tracking-widest text-slate-400 text-sm">SEO Content Clusters</h3>
-                </div>
-                <p className="text-slate-400 mb-8 text-sm">Suggested topics to expand this content cluster.</p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {contentClusters.map(topic => (
-                    <span key={topic} className="px-3 py-1 bg-white/5 rounded-lg text-xs font-medium text-slate-300 border border-white/10">
-                      {topic}
-                    </span>
+            {relatedPosts.length > 0 && (
+              <div className="mt-16 pt-16 border-t border-slate-100">
+                <h3 className="text-2xl font-display font-bold text-slate-900 mb-8">Related Articles</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {relatedPosts.map((related) => (
+                    <Link 
+                      key={related.slug} 
+                      to={`/blog/${related.slug}`}
+                      className="group"
+                    >
+                      <div className="aspect-[16/9] rounded-xl overflow-hidden mb-4">
+                        <img 
+                          src={related.image} 
+                          alt={related.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                      <h4 className="font-bold text-slate-900 group-hover:text-brand-primary transition-colors line-clamp-2">
+                        {related.title}
+                      </h4>
+                    </Link>
                   ))}
                 </div>
               </div>
-            </div>
+            )}
           </main>
 
           {/* Sidebar */}
@@ -1187,7 +1151,7 @@ export default function BlogPost() {
                 Categories
               </h3>
               <div className="space-y-2">
-                {CATEGORIES.map((cat) => (
+                {categoriesWithCount.map((cat) => (
                   <Link 
                     key={cat.name}
                     to={`/blog?category=${cat.name}`}
@@ -1209,7 +1173,7 @@ export default function BlogPost() {
                 Recent Posts
               </h3>
               <div className="space-y-6">
-                {RECENT_POSTS.map((post) => (
+                {recentPosts.map((post) => (
                   <Link 
                     key={post.id} 
                     to={`/blog/${post.slug}`}
@@ -1220,6 +1184,7 @@ export default function BlogPost() {
                         src={post.image} 
                         alt={post.title} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        referrerPolicy="no-referrer"
                       />
                     </div>
                     <div className="flex flex-col justify-center">

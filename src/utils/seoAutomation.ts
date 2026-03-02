@@ -78,33 +78,3 @@ export const suggestInternalLinks = (content: string, allPosts: any[]): { text: 
 
   return suggestions.slice(0, 3);
 };
-
-/**
- * Suggests content clusters and future topics.
- */
-export const suggestContentClusters = (category: string) => {
-  const clusters: Record<string, string[]> = {
-    'AI Tools': [
-      'Top 10 AI Tools for Video Editing in 2026',
-      'How to Use AI to Automate Customer Support',
-      'The Future of Generative AI in Digital Marketing'
-    ],
-    'Marketing & Funnels': [
-      'High-Converting Landing Page Templates for 2026',
-      'How to Build a Webinar Funnel that Actually Sells',
-      'Email Segmentation Strategies for Affiliate Marketers'
-    ],
-    'Automation': [
-      'Make.com vs Zapier: Which is Better for Solopreneurs?',
-      'Automating Your Social Media Calendar with AI',
-      'How to Connect Your CRM to Your Sales Funnel'
-    ],
-    'YouTube Growth': [
-      'YouTube SEO Checklist for 2026',
-      'How to Monetize a Small YouTube Channel',
-      'The Secret to Viral YouTube Shorts'
-    ]
-  };
-
-  return clusters[category] || ['Advanced SEO Strategies', 'Digital Product Launch Guide', 'Affiliate Marketing Mastery'];
-};

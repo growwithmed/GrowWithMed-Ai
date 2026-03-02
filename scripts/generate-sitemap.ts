@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { POSTS, PRODUCTS } from '../src/constants';
 
 // This script generates a sitemap.xml file in the public folder.
 // It should be updated whenever routes, posts, or products change.
@@ -24,26 +25,6 @@ const staticRoutes = [
   { url: '/blog', priority: '0.9', changefreq: 'daily' },
 ];
 
-// In a real automated script, we would import POSTS and PRODUCTS here.
-// For this environment, we'll use the data we already extracted.
-
-const products = [
-  'systeme-io', 'vidiq', 'tube-buddy', 'hostinger', 'seowriting', 'mangools', 'blogify', 'make-com'
-];
-
-const posts = [
-  { slug: 'systeme-io-free-plan-sell-digital-products', date: '2026-02-26' },
-  { slug: 'automate-pinterest-affiliate-links-make-com', date: '2026-02-26' },
-  { slug: 'seowriting-ai-rank-google-test', date: '2026-02-26' },
-  { slug: 'turn-youtube-videos-into-blog-posts', date: '2026-02-26' },
-  { slug: 'mangools-vs-ahrefs-cheap-keyword-tool', date: '2026-02-26' },
-  { slug: 'use-vidiq-to-grow-small-youtube-channel', date: '2026-02-26' },
-  { slug: 'cheapest-web-hosting-affiliate-blogs-2026', date: '2026-02-26' },
-  { slug: 'best-ai-tools-gumroad-creators', date: '2026-02-27' },
-  { slug: 'tubebuddy-keyword-explorer-tutorial-rank-shorts', date: '2026-02-27' },
-  { slug: 'build-automated-email-sales-funnel-budget', date: '2026-02-27' },
-];
-
 let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
 xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
@@ -58,9 +39,9 @@ staticRoutes.forEach(route => {
 });
 
 // Products
-products.forEach(id => {
+PRODUCTS.forEach(product => {
   xml += '  <url>\n';
-  xml += `    <loc>${DOMAIN}/product/${id}</loc>\n`;
+  xml += `    <loc>${DOMAIN}/product/${product.id}</loc>\n`;
   xml += `    <lastmod>${TODAY}</lastmod>\n`;
   xml += '    <changefreq>weekly</changefreq>\n';
   xml += '    <priority>0.9</priority>\n';
@@ -68,10 +49,10 @@ products.forEach(id => {
 });
 
 // Posts
-posts.forEach(post => {
+POSTS.forEach(post => {
   xml += '  <url>\n';
   xml += `    <loc>${DOMAIN}/blog/${post.slug}</loc>\n`;
-  xml += `    <lastmod>${post.date}</lastmod>\n`;
+  xml += `    <lastmod>${post.publishDate || TODAY}</lastmod>\n`;
   xml += '    <changefreq>monthly</changefreq>\n';
   xml += '    <priority>0.8</priority>\n';
   xml += '  </url>\n';
