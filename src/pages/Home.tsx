@@ -2,6 +2,7 @@ import React from 'react';
 import { Search, Twitter, ShieldCheck, BookOpen, Zap, CheckCircle2, ArrowRight, Download, Calendar } from 'lucide-react';
 import { PRODUCTS, CATEGORIES, POSTS } from '../constants';
 import ProductCard from '../components/ProductCard';
+import SEO from '../components/SEO';
 import { motion } from 'motion/react';
 import { cn } from '../lib/utils';
 import { Link } from 'react-router-dom';
@@ -27,6 +28,11 @@ export default function Home() {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO 
+        title="AI Tools for Creators – Compare Top Marketing & SEO Platforms"
+        description="Discover the best AI tools for creators, marketers, and solopreneurs. Compare top SEO, email, and automation platforms, read honest reviews, and find the best affiliate tools."
+        keywords="AI tools for creators, AI marketing tools for solopreneurs, best AI tools for affiliate marketing, AI tools directory for creators"
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-diamond border-b border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.05)] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -35,11 +41,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h1 className="flex flex-col gap-2 mb-8">
-              <span className="text-4xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight">
-                Discover The Best
-              </span>
-              <span className="text-3xl md:text-5xl font-display font-bold tracking-tight bg-gradient-to-r from-[#2563EB] via-[#7E22CE] to-[#EC4899] bg-clip-text text-transparent pb-2">
+            <h1 className="text-4xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight mb-8">
+              Discover The Best <br className="hidden md:block" />
+              <span className="bg-gradient-to-r from-[#2563EB] via-[#7E22CE] to-[#EC4899] bg-clip-text text-transparent">
                 AI Tools, Marketing Platforms & Digital Services
               </span>
             </h1>
