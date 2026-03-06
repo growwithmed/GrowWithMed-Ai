@@ -26,6 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               alt={product.name}
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
+              loading="lazy"
             />
           </div>
           <div className="flex flex-col items-end gap-2">

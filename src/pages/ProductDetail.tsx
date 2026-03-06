@@ -7,7 +7,7 @@ import { motion } from 'motion/react';
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = PRODUCTS.find((p) => p.id === id);
+  const product = PRODUCTS.find((p) => p.id.toString() === id);
 
   if (!product) {
     return (
@@ -44,6 +44,7 @@ export default function ProductDetail() {
               alt={product.name}
               className="w-full aspect-[4/3] object-cover"
               referrerPolicy="no-referrer"
+              loading="lazy"
             />
           </motion.div>
 
@@ -172,6 +173,7 @@ export default function ProductDetail() {
                     alt="Solo Success System" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                     <span className="text-white font-bold flex items-center gap-2">

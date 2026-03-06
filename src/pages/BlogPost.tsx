@@ -17,8 +17,7 @@ import {
 import { cn } from '../lib/utils';
 import SEO from '../components/SEO';
 import { 
-  getRelatedPosts, 
-  suggestInternalLinks
+  getRelatedPosts
 } from '../utils/seoAutomation';
 import { POSTS, CATEGORIES as CONST_CATEGORIES } from '../constants';
 
@@ -1016,6 +1015,7 @@ export default function BlogPost() {
                   alt={post.title} 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
               </div>
               
@@ -1120,6 +1120,7 @@ export default function BlogPost() {
                     alt="Make Your First Sale in 4 Weeks" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                     <span className="text-white font-bold flex items-center gap-2">
@@ -1185,6 +1186,7 @@ export default function BlogPost() {
                         alt={post.title} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         referrerPolicy="no-referrer"
+                        loading="lazy"
                       />
                     </div>
                     <div className="flex flex-col justify-center">
