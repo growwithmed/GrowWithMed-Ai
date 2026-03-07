@@ -1,0 +1,56 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "data"
+    label: "Website Data"
+    files:
+      - file: "src/data/posts.json"
+        label: "Blog Posts"
+        name: "posts"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            fields:
+              - {label: "ID", name: "id", widget: "number"}
+              - {label: "Slug", name: "slug", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Excerpt", name: "excerpt", widget: "text"}
+              - {label: "Date", name: "date", widget: "string"}
+              - {label: "Read Time", name: "readTime", widget: "string"}
+              - {label: "Image", name: "image", widget: "image"}
+              - {label: "Author", name: "author", widget: "string"}
+              - {label: "Category", name: "category", widget: "select", options: ["AI Tools", "Marketing & Funnels", "SEO Tools", "YouTube Growth", "Automation", "Deals"]}
+              - {label: "Publish Date", name: "publishDate", widget: "string"}
+              - {label: "Meta Title", name: "metaTitle", widget: "string"}
+              - {label: "Meta Description", name: "metaDescription", widget: "text"}
+              - {label: "Meta Keywords", name: "metaKeywords", widget: "string"}
+              - {label: "Canonical URL", name: "canonicalUrl", widget: "string"}
+
+      - file: "src/data/products.json"
+        label: "Products"
+        name: "products"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            fields:
+              - {label: "ID", name: "id", widget: "string"}
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Tagline", name: "tagline", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Category", name: "category", widget: "select", options: ["AI Tools", "Marketing & Funnels", "SEO Tools", "YouTube Growth", "Automation", "Deals"]}
+              - {label: "Rating", name: "rating", widget: "number", value_type: "float"}
+              - {label: "Image", name: "image", widget: "image"}
+              - {label: "Affiliate URL", name: "affiliateUrl", widget: "string"}
+              - {label: "Features", name: "features", widget: "list", field: {label: "Feature", name: "feature", widget: "string"}}
+              - {label: "Review", name: "review", widget: "markdown"}
+              - {label: "Editor's Pick", name: "isEditorsPick", widget: "boolean"}
+              - {label: "Free Plan", name: "isFreePlan", widget: "boolean"}
+              - {label: "Best for Beginners", name: "isBestForBeginners", widget: "boolean"}
+              - {label: "Sponsored", name: "isSponsored", widget: "boolean"}
