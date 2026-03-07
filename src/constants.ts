@@ -37,6 +37,7 @@ export interface BlogPost {
   metaKeywords?: string;
   ogImage?: string;
   canonicalUrl?: string;
+  content?: string;
 }
 
 export const POSTS: BlogPost[] = postsData as BlogPost[];
