@@ -10,26 +10,34 @@ const TODAY = new Date().toISOString().split('T')[0];
 
 const staticRoutes = [
   { url: '/', priority: '1.0', changefreq: 'daily' },
+  { url: '/blog', priority: '0.9', changefreq: 'daily' },
   { url: '/categories', priority: '0.8', changefreq: 'weekly' },
-  { url: '/ai-tools', priority: '0.8', changefreq: 'weekly' },
-  { url: '/marketing', priority: '0.8', changefreq: 'weekly' },
-  { url: '/seo', priority: '0.8', changefreq: 'weekly' },
-  { url: '/youtube', priority: '0.8', changefreq: 'weekly' },
   { url: '/guide', priority: '0.7', changefreq: 'monthly' },
-  { url: '/resources', priority: '0.8', changefreq: 'daily' },
-  { url: '/deals', priority: '0.8', changefreq: 'weekly' },
   { url: '/about', priority: '0.6', changefreq: 'monthly' },
   { url: '/privacy', priority: '0.3', changefreq: 'monthly' },
   { url: '/terms', priority: '0.3', changefreq: 'monthly' },
   { url: '/faq', priority: '0.5', changefreq: 'monthly' },
-  { url: '/blog', priority: '0.9', changefreq: 'daily' },
 ];
+
+// Add category routes
+const categoryRoutes = [
+  'AI Tools',
+  'Marketing & Funnels',
+  'SEO Tools',
+  'YouTube Growth',
+  'Automation',
+  'Deals'
+].map(cat => ({
+  url: `/blog?category=${encodeURIComponent(cat)}`,
+  priority: '0.7',
+  changefreq: 'weekly'
+}));
 
 let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
 xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
 // Static routes
-staticRoutes.forEach(route => {
+[...staticRoutes, ...categoryRoutes].forEach(route => {
   xml += '  <url>\n';
   xml += `    <loc>${DOMAIN}${route.url}</loc>\n`;
   xml += `    <lastmod>${TODAY}</lastmod>\n`;

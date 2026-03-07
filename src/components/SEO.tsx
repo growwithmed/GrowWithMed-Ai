@@ -98,6 +98,7 @@ const SEO: React.FC<SEOProps> = ({
       <title>{metaTitle}{title ? ` | ${siteName}` : ''}</title>
       <meta name="description" content={metaDescription} />
       {keywords && <meta name="keywords" content={keywords} />}
+      <meta name="robots" content="index, follow" />
       <link rel="canonical" href={canonicalUrl} />
 
       {/* Open Graph tags */}
