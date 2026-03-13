@@ -1,6 +1,15 @@
 import postsData from './data/posts.json';
 import productsData from './data/products.json';
 
+export interface UserReview {
+  id: string;
+  userName: string;
+  rating: number;
+  comment: string;
+  date: string;
+  avatar?: string;
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -12,6 +21,7 @@ export interface Product {
   affiliateUrl: string;
   features: string[];
   review: string;
+  userReviews?: UserReview[];
   isEditorsPick?: boolean;
   isFreePlan?: boolean;
   isBestForBeginners?: boolean;
