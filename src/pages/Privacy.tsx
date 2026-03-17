@@ -1,9 +1,14 @@
 import { motion } from 'motion/react';
 import { Shield, Lock, Eye, FileText, Mail, Zap } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Privacy() {
   return (
     <div className="bg-slate-50 min-h-screen pb-24">
+      <SEO 
+        title="Privacy Policy | Grow With Med"
+        description="Read our privacy policy to understand how we collect, use, and protect your personal information when you use Grow With Med."
+      />
       {/* Hero Header */}
       <section className="bg-white border-b border-slate-100 pt-20 pb-24">
         <div className="max-w-4xl mx-auto px-4 text-center">

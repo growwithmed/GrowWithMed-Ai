@@ -1,9 +1,10 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { PRODUCTS } from '../constants';
-import { Star, Check, ArrowLeft, ExternalLink, ShieldCheck, Zap, MessageSquare, Globe, Info } from 'lucide-react';
+import { PRODUCTS, POSTS } from '../constants';
+import { Star, Check, ArrowLeft, ExternalLink, ShieldCheck, Zap, MessageSquare, Globe, Info, ArrowRight } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { motion } from 'motion/react';
 import { cn } from '../lib/utils';
+import SEO from '../components/SEO';
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -19,8 +20,18 @@ export default function ProductDetail() {
     );
   }
 
+  const relatedPosts = POSTS.filter(post => 
+    post.category === product.category || 
+    post.title.toLowerCase().includes(product.name.toLowerCase())
+  ).slice(0, 3);
+
   return (
     <div className="bg-white min-h-screen pb-24">
+      <SEO 
+        title={`${product.name} Review – Features, Pricing & Best Deals`}
+        description={product.tagline || `Read our expert review of ${product.name}. Learn about its features, pricing, and how it can help you grow your online business.`}
+        image={product.image}
+      />
       {/* Breadcrumbs & Back */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <button 
@@ -138,6 +149,44 @@ export default function ProductDetail() {
                 <ReactMarkdown>{product.review}</ReactMarkdown>
               </div>
             </div>
+
+            {/* Related Blog Posts */}
+            {relatedPosts.length > 0 && (
+              <div>
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center gap-3">
+                    <div className="w-1.5 h-8 bg-brand-primary rounded-full" />
+                    <h2 className="text-3xl font-display font-extrabold text-slate-900">Related Tutorials</h2>
+                  </div>
+                  <Link to="/blog" className="text-brand-primary font-bold hover:underline flex items-center gap-2">
+                    View all <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {relatedPosts.map((post) => (
+                    <Link 
+                      key={post.id} 
+                      to={`/blog/${post.slug}`}
+                      className="group bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-lg transition-all"
+                    >
+                      <div className="aspect-video overflow-hidden">
+                        <img 
+                          src={post.image} 
+                          alt={post.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-bold text-slate-900 group-hover:text-brand-primary transition-colors line-clamp-2 text-sm leading-tight">
+                          {post.title}
+                        </h4>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* User Reviews */}
             {product.userReviews && product.userReviews.length > 0 && (

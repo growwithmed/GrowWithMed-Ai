@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import SEO from '../components/SEO';
 import { 
   Plus, 
   Minus, 
@@ -158,6 +159,10 @@ export default function FAQ() {
 
   return (
     <div className="bg-slate-50 min-h-screen pb-24">
+      <SEO 
+        title="Frequently Asked Questions | Grow With Med"
+        description="Find answers to common questions about Grow With Med, our review process, and how we help you find the best AI and marketing tools."
+      />
       {/* Hero Header */}
       <section className="bg-white border-b border-slate-100 pt-20 pb-24">
         <div className="max-w-4xl mx-auto px-4 text-center">

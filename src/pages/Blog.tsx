@@ -16,10 +16,10 @@ export default function Blog() {
   return (
     <div className="bg-slate-50 min-h-screen pb-24">
       <SEO 
-        title={categoryFilter ? `${categoryFilter} Articles | Grow With Med` : "The Growth Blog | Grow With Med"}
+        title={categoryFilter ? `${categoryFilter} Tutorials & Guides | Grow With Med` : "The Growth Blog: AI, Marketing & SEO Tutorials | Grow With Med"}
         description={categoryFilter 
-          ? `Explore our latest articles and tutorials about ${categoryFilter}. Learn how to grow your online business with expert insights.`
-          : "Expert insights, tutorials, and deep dives into the digital tools that power the modern web. Learn how to grow your online business with AI and automation."}
+          ? `Master ${categoryFilter} with our expert tutorials, case studies, and tool reviews. Learn the best strategies to grow your digital business with ${categoryFilter}.`
+          : "Expert insights, step-by-step tutorials, and deep dives into the AI and automation tools that power the modern web. Learn how to scale your online business today."}
       />
       {/* Hero Header */}
       <section className="bg-white border-b border-slate-100 pt-20 pb-24">

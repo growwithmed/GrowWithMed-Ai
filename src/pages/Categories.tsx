@@ -1,6 +1,7 @@
 import React from 'react';
 import { CATEGORIES, PRODUCTS } from '../constants';
 import ProductCard from '../components/ProductCard';
+import SEO from '../components/SEO';
 import { motion } from 'motion/react';
 import { cn } from '../lib/utils';
 import { 
@@ -33,6 +34,12 @@ export default function Categories() {
 
   return (
     <div className="bg-slate-50 min-h-screen">
+      <SEO 
+        title={activeCategory === 'All' ? "AI Tools & Marketing Categories | Grow With Med" : `${activeCategory} Tools & Resources | Grow With Med`}
+        description={activeCategory === 'All' 
+          ? "Browse our curated categories of AI tools, marketing platforms, and SEO software. Find the best digital assets to grow your online business faster."
+          : `Explore the best ${activeCategory} tools and resources. We've reviewed and compared the top platforms to help you make the right choice for your business.`}
+      />
       {/* Hero Section */}
       <section className="bg-white border-b border-slate-100 pt-16 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

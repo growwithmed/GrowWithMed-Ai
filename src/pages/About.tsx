@@ -1,10 +1,15 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ShieldCheck, Users, Zap, Globe } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function About() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <SEO 
+        title="About Grow With Med – Our Mission & Team"
+        description="Learn more about Grow With Med, our mission to bring transparency to the digital service industry, and how we help creators find the best AI and marketing tools."
+      />
       <div className="max-w-3xl mx-auto text-center mb-20">
         <h1 className="text-4xl md:text-5xl font-display font-extrabold text-slate-900 mb-6">About Grow With Med</h1>
         <p className="text-slate-500 text-lg leading-relaxed">

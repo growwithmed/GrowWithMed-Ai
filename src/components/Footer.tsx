@@ -11,6 +11,12 @@ export default function Footer() {
           
           <div className="flex items-center gap-8 text-sm font-medium">
             <Link 
+              to="/blog" 
+              className="opacity-70 hover:opacity-100 transition-opacity"
+            >
+              Blog
+            </Link>
+            <Link 
               to="/faq" 
               className="opacity-70 hover:opacity-100 transition-opacity"
             >

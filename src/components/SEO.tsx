@@ -36,9 +36,27 @@ const SEO: React.FC<SEOProps> = ({
     : siteName;
     
   // Use utility for description if it's too long or missing
-  const metaDescription = description
-    ? (description.length > 160 ? generateMetaDescription(description) : description)
-    : 'Discover the best AI tools, marketing platforms & digital services. Compare trusted tools used by creators, marketers, and solopreneurs to grow faster online.';
+  let metaDescription = description || 'Discover the best AI tools, marketing platforms & digital services. Compare trusted tools used by creators, marketers, and solopreneurs to grow faster online.';
+  
+  // If it's too long, truncate it
+  if (metaDescription.length > 160) {
+    metaDescription = generateMetaDescription(metaDescription, 160);
+  }
+  
+  // If it's too short, try to expand it slightly to reach the 140-160 range
+  if (metaDescription.length < 140 && !description) {
+    // Default is already 154, so this only applies if a short description was passed
+  } else if (metaDescription.length < 140 && description) {
+    const suffix = " Compare the best AI tools and marketing platforms for creators and solopreneurs on Grow With Med.";
+    if (metaDescription.length + suffix.length <= 160) {
+      metaDescription += suffix;
+    } else {
+      const remaining = 160 - metaDescription.length - 1; // -1 for space
+      if (remaining > 20) {
+        metaDescription += " " + suffix.substring(1, remaining - 3) + "...";
+      }
+    }
+  }
     
   const canonicalUrl = url || (slug ? `${domain}/blog/${slug}` : domain);
   const ogImage = image || 'https://i.ibb.co/zhS2txZW/Design-sans-titre-5.png';

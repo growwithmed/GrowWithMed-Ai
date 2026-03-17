@@ -1,9 +1,14 @@
 import { motion } from 'motion/react';
 import { Scale, Info, DollarSign, Copyright, ExternalLink, UserCheck, AlertTriangle, Gavel, RefreshCw, Mail } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Terms() {
   return (
     <div className="bg-slate-50 min-h-screen pb-24">
+      <SEO 
+        title="Terms of Service | Grow With Med"
+        description="Read our terms of service to understand the rules, guidelines, and legal agreements for using Grow With Med."
+      />
       {/* Hero Header */}
       <section className="bg-white border-b border-slate-100 pt-20 pb-24">
         <div className="max-w-4xl mx-auto px-4 text-center">

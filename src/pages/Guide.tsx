@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { BookOpen, CheckCircle2, ArrowRight } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const GUIDES = [
   {
@@ -23,6 +24,10 @@ const GUIDES = [
 export default function Guide() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <SEO 
+        title="Expert Digital Service Guides | Grow With Med"
+        description="Explore our in-depth guides to help you navigate the complex world of digital services, AI tools, and marketing platforms."
+      />
       <div className="max-w-3xl mb-16">
         <h1 className="text-4xl font-display font-extrabold text-slate-900 mb-6">Expert Guides</h1>
         <p className="text-slate-500 text-lg leading-relaxed">
