@@ -1,6 +1,6 @@
 import React from 'react';
-import { Search, Twitter, ShieldCheck, BookOpen, Zap, CheckCircle2, ArrowRight, Download, Calendar } from 'lucide-react';
-import { PRODUCTS, CATEGORIES, POSTS } from '../constants';
+import { Search, Twitter, ShieldCheck, BookOpen, Zap, CheckCircle2, ArrowRight, Download } from 'lucide-react';
+import { PRODUCTS, CATEGORIES } from '../constants';
 import ProductCard from '../components/ProductCard';
 import SEO from '../components/SEO';
 import { motion } from 'motion/react';
@@ -8,6 +8,49 @@ import { cn } from '../lib/utils';
 import { Link } from 'react-router-dom';
 
 const FILTERS = ['Today', 'New', 'Top Rated', 'Best Value', 'Free Tools', 'Editor\'s Pick'];
+
+const COURSES = [
+  {
+    title: "DeepSeek YouTube Masterclass: 7 Lessons to Dominate AI Video Creation (Free)",
+    image: "https://public-files.gumroad.com/1wslqc0k7vfw65d606xql9ojw60z",
+    link: "https://growwithmed.gumroad.com/l/DeepSeekYouTubeMasterclass?layout=profile"
+  },
+  {
+    title: "DeepSeek Pinterest Masterclass: Affiliate Marketing & Automation to Make Money on Pinterest",
+    image: "https://public-files.gumroad.com/ot5jebjx9daqdies0467y0ez5etp",
+    link: "https://growwithmed.gumroad.com/l/DeepSeekPinterestMasterclass?layout=profile"
+  },
+  {
+    title: "How to Build AI Agents That Print Cash & Automate Your Entire Business (Free Course)",
+    image: "https://public-files.gumroad.com/bcyeo6wem8mwkfnx06o1w73ep805",
+    link: "https://growwithmed.gumroad.com/l/AIAgentMastery?layout=profile"
+  },
+  {
+    title: "Claude for SaaS: The Engineer's Playbook [FREE] The 10 Claude Techniques Every SaaS Builder Needs Right Now",
+    image: "https://public-files.gumroad.com/1gu312esuumc3mm7pptzgfebaewz",
+    link: "https://growwithmed.gumroad.com/l/ThesassEngineersPlaybook?layout=profile"
+  },
+  {
+    title: "Build a Profitable AI Micro SaaS in 7 Days — 11 Validated Ideas for 2026",
+    image: "https://public-files.gumroad.com/rhez7i8rkyamx31qf0dhsroezpde",
+    link: "https://growwithmed.gumroad.com/l/BuildaProfitableAIMicroSaaS?layout=profile"
+  },
+  {
+    title: "FREE Affiliate Marketing Course for Beginner",
+    image: "https://public-files.gumroad.com/bgq05gp1719gyfsab77htghud7us",
+    link: "https://growwithmed.gumroad.com/l/FREEAffiliateMarketingCourseforBeginners?layout=profile"
+  },
+  {
+    title: "5 Fiverr Services Every Solopreneur Needs to Scale Faster",
+    image: "https://public-files.gumroad.com/0ljaoqaub59xpj5rn52verd4n3ae",
+    link: "https://growwithmed.gumroad.com/l/services-every-solopreneur-needs?layout=profile"
+  },
+  {
+    title: "The Solo Business Reset",
+    image: "https://public-files.gumroad.com/6b9gh3lcq17swih021ndpvxo7wer",
+    link: "https://growwithmed.gumroad.com/l/the-solo-busines-reset?layout=profile"
+  }
+];
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = React.useState<string>('All');
@@ -166,65 +209,47 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Blog Section */}
+      {/* Courses Section */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 mb-4">Latest from the Blog</h2>
-              <p className="text-slate-500 font-medium">Expert insights and tutorials to help you scale your digital business.</p>
-            </div>
-            <Link to="/blog" className="hidden md:flex items-center gap-2 text-brand-primary font-bold hover:underline">
-              View all posts <ArrowRight className="w-4 h-4" />
-            </Link>
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 mb-4">Learn the AI Tools That Matter</h2>
+            <p className="text-slate-500 font-medium max-w-2xl">Deep-dive courses and prompt libraries engineered for real-world output — YouTube growth, Pinterest traffic, SaaS building, and marketing automation.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {POSTS.slice(0, 6).map((post, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {COURSES.map((course, index) => (
               <motion.article
-                key={post.id}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.05 }}
                 className="bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full group"
               >
-                <div className="aspect-[16/9] overflow-hidden">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">
-                    <Calendar className="w-3 h-3" />
-                    {post.date}
+                <a href={course.link} target="_blank" rel="noopener noreferrer" className="flex flex-col h-full">
+                  <div className="aspect-[16/9] overflow-hidden">
+                    <img
+                      src={course.image}
+                      alt={course.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                    />
                   </div>
-                  <h3 className="text-lg font-display font-bold text-slate-900 mb-3 leading-tight group-hover:text-brand-primary transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  <div className="mt-auto">
-                    <Link
-                      to={`/blog/${post.slug}`}
-                      className="inline-flex items-center gap-1 text-sm font-bold text-brand-primary hover:gap-2 transition-all"
-                    >
-                      Read More
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="text-base font-display font-bold text-slate-900 mb-4 leading-tight group-hover:text-brand-primary transition-colors line-clamp-3">
+                      {course.title}
+                    </h3>
+                    <div className="mt-auto">
+                      <div className="inline-flex items-center gap-1 text-sm font-bold text-brand-primary group-hover:gap-2 transition-all">
+                        Learn More
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </a>
               </motion.article>
             ))}
-          </div>
-          <div className="mt-12 text-center md:hidden">
-            <Link to="/blog" className="inline-flex items-center gap-2 text-brand-primary font-bold hover:underline">
-              View all posts <ArrowRight className="w-4 h-4" />
-            </Link>
           </div>
         </div>
       </section>
@@ -235,16 +260,16 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
-              <h2 className="text-4xl md:text-6xl font-display font-extrabold mb-8 leading-tight">The Ultimate AI <br />Business Vault</h2>
+              <h2 className="text-4xl md:text-6xl font-display font-extrabold mb-8 leading-tight">All in One AI <br />Bundle 2.0</h2>
               <p className="text-xl text-slate-300 mb-12 font-medium leading-relaxed">
-                Get access to our curated bundle of 500+ high-converting AI prompts designed to automate your marketing, content creation, and sales.
+                Get access to the most comprehensive AI collection: 100,000+ Prompts, Notion Dashboards & the AI Mastery Vault to scale your business.
               </p>
               <div className="space-y-6 mb-12">
                 {[
-                  '500+ Expert-Crafted AI Prompts',
-                  'Marketing & Sales Automation Scripts',
-                  'Content Repurposing Frameworks',
-                  'Lifetime Updates Included'
+                  '100,000+ High-Converting AI Prompts',
+                  'Professional Notion Business Dashboards',
+                  'Complete AI Mastery Video Vault',
+                  'Lifetime Updates & Instant Access'
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-4">
                     <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -255,12 +280,12 @@ export default function Home() {
                 ))}
               </div>
               <a 
-                href="https://growwithmed.gumroad.com/l/ai-business-vault"
+                href="https://growwithmed.gumroad.com/l/AllinOneAIBundle?layout=profile"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-brand-secondary text-white px-10 py-5 rounded-2xl text-xl font-black hover:opacity-90 transition-all shadow-2xl shadow-brand-secondary/40 group"
               >
-                Access The Vault Now
+                Access The Bundle Now
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
@@ -272,8 +297,8 @@ export default function Home() {
                 className="aspect-square rounded-[3rem] overflow-hidden border-8 border-white/10 shadow-2xl"
               >
                 <img 
-                  src="https://public-files.gumroad.com/0ztn55cxhp9x9t8r1j5nuwi6dix3" 
-                  alt="AI Business Vault" 
+                  src="https://public-files.gumroad.com/satfix7pjr2pozewgs650cn2k6t6" 
+                  alt="All in One AI Bundle 2.0" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                   loading="lazy"
