@@ -6,6 +6,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-sm font-medium opacity-70">
+            Grow With Med: Empowering the next generation of solopreneurs through AI education and honest tool reviews.
+          </div>
+          <div className="text-sm font-medium opacity-70">
             © {new Date().getFullYear()} Grow With Med. All rights reserved.
           </div>
           

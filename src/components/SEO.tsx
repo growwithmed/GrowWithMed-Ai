@@ -13,6 +13,7 @@ interface SEOProps {
   publishDate?: string;
   updatedDate?: string;
   slug?: string;
+  faqData?: { question: string; answer: string }[];
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -25,7 +26,8 @@ const SEO: React.FC<SEOProps> = ({
   author = 'Med Koudi',
   publishDate,
   updatedDate,
-  slug
+  slug,
+  faqData
 }) => {
   const siteName = 'Grow With Med';
   const domain = 'https://www.growwithmed.site';
@@ -138,6 +140,22 @@ const SEO: React.FC<SEOProps> = ({
       {structuredData && (
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
+        </script>
+      )}
+      {faqData && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqData.map(item => ({
+              "@type": "Question",
+              "name": item.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.answer
+              }
+            }))
+          })}
         </script>
       )}
       <script type="application/ld+json">

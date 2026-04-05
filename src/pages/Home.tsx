@@ -52,6 +52,37 @@ const COURSES = [
   }
 ];
 
+const FAQ_DATA = [
+  {
+    question: "What is Grow With Med?",
+    answer: "A curated directory and educational hub for solopreneurs to find the best AI tools and digital products — reviewed and tested by our team."
+  },
+  {
+    question: "What are the best AI tools for solopreneurs in 2026?",
+    answer: "Systeme.io for marketing automation, vidIQ for YouTube growth, and SEOWriting AI for content creation are our top recommendations based on real-world testing."
+  },
+  {
+    question: "Is Systeme.io really free?",
+    answer: "Yes. Systeme.io offers a Free Forever plan that includes 2,000 contacts, unlimited emails, and one full sales funnel — no credit card required."
+  },
+  {
+    question: "What is the AI Plus Bundle 2.0?",
+    answer: "A massive library of 100,000+ AI prompts and Notion templates designed to automate your entire digital business — available as a one-time purchase with lifetime updates."
+  },
+  {
+    question: "What is the best YouTube growth tool for beginners?",
+    answer: "vidIQ is the most effective tool for beginners. It provides AI-driven keyword research, daily video ideas, and competitor tracking to help small channels grow faster."
+  },
+  {
+    question: "How does Grow With Med make money?",
+    answer: "Through affiliate commissions when you use our links and through sales of premium digital products on Gumroad. We always disclose this transparently."
+  },
+  {
+    question: "Where can I find free AI prompt packs?",
+    answer: "Grow With Med offers several free starter packs in the digital products section — no email required."
+  }
+];
+
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = React.useState<string>('All');
   const [selectedFilter, setSelectedFilter] = React.useState<string>('Today');
@@ -72,9 +103,10 @@ export default function Home() {
   return (
     <div className="bg-white min-h-screen">
       <SEO 
-        title="AI Tools for Creators – Compare Top Marketing & SEO Platforms"
-        description="Discover the best AI tools for creators, marketers, and solopreneurs. Compare top SEO, email, and automation platforms, read honest reviews, and find the best affiliate tools."
-        keywords="AI tools for creators, AI marketing tools for solopreneurs, best AI tools for affiliate marketing, AI tools directory for creators"
+        title="Master AI. Build Smarter. The Best AI Tools for Solopreneurs."
+        description="Discover tested AI tools and premium prompt packs to automate your marketing and scale your digital business. Compare top platforms and find the best affiliate tools."
+        keywords="AI tools for solopreneurs, AI marketing tools, best AI tools for creators, AI tools directory"
+        faqData={FAQ_DATA}
       />
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-diamond border-b border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.05)] overflow-hidden">
@@ -85,14 +117,14 @@ export default function Home() {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <h1 className="text-4xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight mb-8">
-              Discover The Best <br className="hidden md:block" />
+              Master AI. Build Smarter. <br className="hidden md:block" />
               <span className="bg-gradient-to-r from-[#2563EB] via-[#7E22CE] to-[#EC4899] bg-clip-text text-transparent">
-                AI Tools, Marketing Platforms & Digital Services
+                The Best AI Tools for Solopreneurs.
               </span>
             </h1>
             
             <p className="text-lg md:text-xl text-[#374151] mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
-              Compare trusted tools used by creators, marketers, and solopreneurs to grow faster online.
+              Discover tested AI tools and premium prompt packs to automate your marketing and scale your digital business.
             </p>
 
             {/* Search Bar */}
@@ -165,7 +197,7 @@ export default function Home() {
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-2 text-[14px] text-slate-400 font-bold">
                 <ShieldCheck className="w-4 h-4 text-brand-primary" />
-                Reviewed & tested by our team • Updated daily
+                Reviewed & tested by our team • Trusted by 50,000+ creators • Updated daily
               </div>
               <a
                 href="https://twitter.com/GrowWithMed"
@@ -181,12 +213,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Main Content Grid */}
-      <section className="pb-24">
+      {/* Category Section with Descriptions */}
+      <section className="py-16 bg-slate-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 mb-8">
-            <div className="w-2 h-2 bg-brand-secondary rounded-full" />
-            <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">Trusted by 50,000+ creators</span>
+          <h2 className="text-3xl font-display font-extrabold text-slate-900 mb-12 text-center">Explore by Category</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: 'AI Tools', desc: 'The ultimate directory of software to automate your daily tasks.', icon: Zap },
+              { title: 'Marketing & Funnels', desc: 'Build high-converting sales engines for $0.', icon: Search },
+              { title: 'SEO Tools', desc: 'Rank on the first page of Google with AI-assisted research.', icon: ShieldCheck },
+              { title: 'YouTube Growth', icon: Twitter, desc: 'Go viral and stay consistent with AI video intelligence.' },
+              { title: 'Automation', desc: 'Connect your apps and save 20+ hours every week.', icon: Zap },
+              { title: 'Deals', desc: 'Exclusive discounts on the tools you need to grow.', icon: CheckCircle2 }
+            ].map((cat) => (
+              <div key={cat.title} className="bg-white p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-all">
+                <div className="w-10 h-10 bg-brand-primary/10 rounded-xl flex items-center justify-center mb-4">
+                  <cat.icon className="w-5 h-5 text-brand-primary" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">{cat.title}</h3>
+                <p className="text-slate-500 text-sm font-medium">{cat.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content Grid */}
+      <section className="pb-24 pt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 max-w-3xl">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-2 h-2 bg-brand-secondary rounded-full" />
+              <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">Trusted by 50,000+ creators</span>
+            </div>
+            <p className="text-lg text-slate-600 leading-relaxed font-medium italic">
+              "In a world flooded with AI hype, we provide clarity. Every tool listed on Grow With Med is personally tested by our founder, Med, and our dedicated team of digital entrepreneurs. We don't just list software; we build businesses with it. Our reviews are transparent, updated daily, and focused on one goal: helping you build a profitable one-person business. We may earn a commission if you use our links, but our recommendations are driven by performance, not payouts."
+            </p>
           </div>
           {filteredProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -254,22 +316,41 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Blog Section */}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 mb-4">Learn & Scale: Expert AI Tutorials</h2>
+            <p className="text-slate-500 font-medium max-w-2xl mx-auto">Deep-dive guides on using AI to grow your traffic, sales, and authority.</p>
+          </div>
+          <div className="flex justify-center">
+            <Link 
+              to="/blog"
+              className="inline-flex items-center gap-2 bg-white border border-slate-200 px-8 py-4 rounded-xl font-bold text-slate-900 hover:border-brand-primary hover:text-brand-primary transition-all shadow-sm"
+            >
+              View All Tutorials
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Free Resources Section */}
       <section className="py-24 bg-brand-primary text-white overflow-hidden relative">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-secondary/10 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
-              <h2 className="text-4xl md:text-6xl font-display font-extrabold mb-8 leading-tight">All in One AI <br />Bundle 2.0</h2>
+              <h2 className="text-4xl md:text-6xl font-display font-extrabold mb-8 leading-tight">AI Plus Bundle 2.0: <br />The Ultimate Solopreneur Mastery Vault</h2>
               <p className="text-xl text-slate-300 mb-12 font-medium leading-relaxed">
-                Get access to the most comprehensive AI collection: 100,000+ Prompts, Notion Dashboards & the AI Mastery Vault to scale your business.
+                Stop staring at a blank cursor.
               </p>
               <div className="space-y-6 mb-12">
                 {[
-                  '100,000+ High-Converting AI Prompts',
-                  'Professional Notion Business Dashboards',
-                  'Complete AI Mastery Video Vault',
-                  'Lifetime Updates & Instant Access'
+                  '100,000+ High-Converting Prompts for ChatGPT, Claude, and more',
+                  'Custom Notion Dashboards to organize your entire digital business',
+                  'Exclusive Masterclasses on YouTube growth and affiliate marketing',
+                  'Lifetime Updates included — never fall behind the AI curve'
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-4">
                     <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -285,9 +366,10 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-brand-secondary text-white px-10 py-5 rounded-2xl text-xl font-black hover:opacity-90 transition-all shadow-2xl shadow-brand-secondary/40 group"
               >
-                Access The Bundle Now
+                Get the All-in-One Bundle Now
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </a>
+              <p className="mt-6 text-slate-300 font-medium">Join 50,000+ creators who have already upgraded their workflow.</p>
             </div>
             <div className="relative">
               <motion.div 
@@ -305,6 +387,29 @@ export default function Home() {
                 />
               </motion.div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-slate-500 font-medium">Everything you need to know about Grow With Med and the tools we recommend.</p>
+          </div>
+          <div className="space-y-8">
+            {FAQ_DATA.map((faq, index) => (
+              <div key={index} className="border-b border-slate-100 pb-8 last:border-0">
+                <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-start gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 bg-brand-primary/10 rounded-lg flex items-center justify-center text-brand-primary text-sm">Q{index + 1}</span>
+                  {faq.question}
+                </h3>
+                <div className="pl-12">
+                  <p className="text-slate-600 leading-relaxed font-medium">{faq.answer}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
