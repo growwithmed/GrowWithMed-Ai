@@ -55,6 +55,7 @@ export default function BlogPost() {
         publishDate={post.publishDate}
         updatedDate={post.updatedDate}
         slug={post.slug}
+        faqData={post.faqData}
       />
       {/* Breadcrumbs & Header */}
       <div className="bg-white border-b border-slate-100 py-8">

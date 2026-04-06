@@ -48,6 +48,7 @@ export interface BlogPost {
   ogImage?: string;
   canonicalUrl?: string;
   content?: string;
+  faqData?: { question: string; answer: string }[];
 }
 
 export const POSTS: BlogPost[] = postsData as BlogPost[];

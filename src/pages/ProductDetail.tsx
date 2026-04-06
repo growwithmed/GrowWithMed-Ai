@@ -250,45 +250,6 @@ export default function ProductDetail() {
               </ul>
             </div>
 
-            {/* Gumroad Promotion */}
-            <div className="group rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-xl hover:shadow-2xl transition-all duration-500 bg-white">
-              <a 
-                href="https://growwithmed.gumroad.com/l/Solo-success-system" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <div className="aspect-[4/5] overflow-hidden relative">
-                  <img 
-                    src="https://i.ibb.co/Rk39hMsm/Design-sans-titre-11.png" 
-                    alt="Solo Success System" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                    <span className="text-white font-bold flex items-center gap-2">
-                      Learn More <ExternalLink className="w-4 h-4" />
-                    </span>
-                  </div>
-                </div>
-                <div className="p-8">
-                  <h4 className="text-xl font-display font-extrabold text-slate-900 mb-3 group-hover:text-brand-primary transition-colors">
-                    Solo Success System
-                  </h4>
-                  <p className="text-slate-500 text-sm font-medium leading-relaxed mb-6">
-                    The ultimate blueprint for building a profitable one-person business in 2026.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-brand-primary font-black text-2xl">$19</span>
-                    <span className="bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest">
-                      Limited Offer
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </div>
-
           </aside>
         </div>
       </section>

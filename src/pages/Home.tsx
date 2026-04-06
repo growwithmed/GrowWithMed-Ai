@@ -213,31 +213,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Category Section with Descriptions */}
-      <section className="py-16 bg-slate-50/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-display font-extrabold text-slate-900 mb-12 text-center">Explore by Category</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: 'AI Tools', desc: 'The ultimate directory of software to automate your daily tasks.', icon: Zap },
-              { title: 'Marketing & Funnels', desc: 'Build high-converting sales engines for $0.', icon: Search },
-              { title: 'SEO Tools', desc: 'Rank on the first page of Google with AI-assisted research.', icon: ShieldCheck },
-              { title: 'YouTube Growth', icon: Twitter, desc: 'Go viral and stay consistent with AI video intelligence.' },
-              { title: 'Automation', desc: 'Connect your apps and save 20+ hours every week.', icon: Zap },
-              { title: 'Deals', desc: 'Exclusive discounts on the tools you need to grow.', icon: CheckCircle2 }
-            ].map((cat) => (
-              <div key={cat.title} className="bg-white p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-all">
-                <div className="w-10 h-10 bg-brand-primary/10 rounded-xl flex items-center justify-center mb-4">
-                  <cat.icon className="w-5 h-5 text-brand-primary" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{cat.title}</h3>
-                <p className="text-slate-500 text-sm font-medium">{cat.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Main Content Grid */}
       <section className="pb-24 pt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
